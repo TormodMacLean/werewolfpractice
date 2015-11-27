@@ -61,9 +61,8 @@ for player in random.sample(villagers, 2):
 for player in villagers:
     print player.name + " you are a " + player.species
 
-# narrative intro
 
-
+# functions for running the game
 def vote(question, eligible=None):
     while True:
         accused[:] = []
@@ -121,6 +120,8 @@ def victory():
         gameStatus = 0
     remaining[:] = []
 
+
+# the actual running of the game
 while gameStatus > 0:
     day()
     if gameStatus > 0:
