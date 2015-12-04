@@ -33,33 +33,34 @@ accused = []
 remaining = []
 deadname = ""
 gameStatus = 1
-population = 0
 
+
+# todo check if names are unique
 # sets the number of players and their names
-while population < 5:
-    try:
-        population = int(raw_input("How many players are there?"))
-        if population < 5:
-            print "This is too few players for a game of werewolf. Please enter a higher number."
-    except ValueError:
-        print "You have not entered a number. Please enter a number higher than 4."
-for person in range(population):
+def setup():
     while True:
-        name = raw_input("What is the name of player " + str(person + 1) + "?")
-        if name == "":
-            print "Player's name must not be blank."
-            continue
-        else:
-            break
-    person = Character(name, "human")
-    villagers.append(person)
-
-# selects werewolves from the villagers and adds them to the werewolf array
-for player in random.sample(villagers, 2):
-    player.species = "wolf"
-
-for player in villagers:
-    print player.name + " you are a " + player.species
+        try:
+            population = int(raw_input("How many players are there?"))
+            if population < 5:
+                print "This is too few players for a game of werewolf. Please enter a number higher than 4."
+                continue
+        except ValueError:
+            print "You have not entered a number. Please enter a number higher than 4."
+        break
+    for person in range(population):
+        while True:
+            name = raw_input("What is the name of player " + str(person + 1) + "?")
+            if name == "":
+                print "Player's name must not be blank."
+                continue
+            else:
+                break
+        person = Character(name, "human")
+        villagers.append(person)
+    for player in random.sample(villagers, 2):
+        player.species = "wolf"
+    for player in villagers:
+        print player.name + " you are a " + player.species
 
 
 # functions for running the game
@@ -122,6 +123,7 @@ def victory():
 
 
 # the actual running of the game
+setup()
 while gameStatus > 0:
     day()
     if gameStatus > 0:
