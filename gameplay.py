@@ -38,6 +38,8 @@ gameStatus = 1
 # todo check if names are unique
 # sets the number of players and their names
 def setup():
+    global population
+    global name
     while True:
         try:
             population = int(raw_input("How many players are there?"))
@@ -93,7 +95,6 @@ def vote(question, eligible=None):
                 deadspecies = victim.species
                 villagers.remove(victim)
         break
-
 
 
 def day():
